@@ -1,0 +1,9 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050816"/>
+  <circle cx="950" cy="210" r="300" fill="#3B82F6" fill-opacity=".12"/>
+  <circle cx="1050" cy="410" r="260" fill="#8B5CF6" fill-opacity=".12"/>
+  <text x="90" y="250" fill="#94A3B8" font-family="Inter, sans-serif" font-size="28" letter-spacing="8">FULL STACK DEVELOPER</text>
+  <text x="84" y="360" fill="white" font-family="Space Grotesk, sans-serif" font-size="112" font-weight="700">ALAN.</text>
+  <rect x="90" y="420" width="220" height="8" rx="4" fill="url(#g)"/>
+  <defs><linearGradient id="g" x1="90" y1="420" x2="310" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#3B82F6"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs>
+</svg>

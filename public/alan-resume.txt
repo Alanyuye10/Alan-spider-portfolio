@@ -1,0 +1,17 @@
+ALAN — FULL STACK MERN DEVELOPER
+
+PROFILE
+Full Stack MERN Developer focused on building high-performance, accessible digital products with thoughtful interaction design.
+
+CORE SKILLS
+React, TypeScript, Next.js, Tailwind CSS, Node.js, Express, MongoDB, Firebase, Shopify, AWS, Docker, Git, GSAP
+
+EXPERIENCE
+2024–Now  Senior Full Stack Developer — Independent / Remote
+2022–2024 MERN Stack Developer — Northstar Labs
+2020–2022 Frontend Developer — Pixel & Logic
+
+CONTACT
+hello@alan.dev
+
+Note: This is sample portfolio content. Replace it with your verified contact information, experience, and project links before publishing.

@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "./base.css";
+@import "./sections.css";
+@import "./sections-extra.css";
+@import "./responsive.css";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --color-ink: #050816;
+  --color-panel: #0f172a;
+  --color-blue: #3b82f6;
+  --color-violet: #8b5cf6;
+}
