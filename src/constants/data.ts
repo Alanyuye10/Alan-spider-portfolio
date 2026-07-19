@@ -52,24 +52,48 @@ export const projects: Project[] = [
     description: 'A headless storefront with personalized discovery, instant search, and a delightfully fast checkout flow.',
     categories: ['MERN', 'React', 'Node'], stack: ['React', 'Node.js', 'MongoDB', 'Stripe'],
     metric: '+38% conversion', tone: 'blue', github: 'https://github.com/', live: 'https://example.com', featured: true,
+    caseStudy: {
+      problem: 'The client\'s existing storefront had high bounce rates and poor mobile conversion. Users struggled with slow search and a checkout flow that leaked 62% of potential sales.',
+      approach: 'We rebuilt the entire storefront as a headless MERN stack with Stripe integration. Personalized product discovery, instant search with debounced queries, and a streamlined 2-step checkout were implemented. The admin dashboard gave the team real-time visibility into sales, inventory, and user behavior patterns.',
+      results: 'Conversion rate increased by 38% within the first month. Page load time dropped from 4.2s to 0.8s. Average session duration grew by 2.3x. The streamlined checkout reduced cart abandonment by 44%.',
+      highlights: ['Reduced bounce rate by 52%', '2-step checkout flow', 'Real-time inventory sync', 'A/B tested product layouts'],
+    },
   },
   {
     id: 2, title: 'Pulse Analytics', eyebrow: 'Realtime intelligence',
     description: 'A collaborative SaaS command center that turns live product signals into clear, actionable decisions.',
     categories: ['React', 'Node'], stack: ['TypeScript', 'Socket.io', 'Express', 'Redis'],
     metric: '12M events/day', tone: 'violet', github: 'https://github.com/', live: 'https://example.com', featured: true,
+    caseStudy: {
+      problem: 'The product team was drowning in data from multiple sources—analytics, support tickets, user sessions—with no unified view. Decisions were slow because insights were scattered across five different tools.',
+      approach: 'We designed a real-time command center that ingests events from multiple sources via WebSocket connections, processes them through a Redis-backed pipeline, and surfaces actionable insights through customizable dashboards. Collaborative features allow teams to annotate, share, and act on data together.',
+      results: 'The platform processes over 12 million events daily with sub-50ms latency. Teams report 3x faster decision-making. User retention improved by 28% due to the collaborative features and customizable views.',
+      highlights: ['12M+ events processed daily', 'Sub-50ms real-time latency', 'Custom dashboard builder', 'Team annotation system'],
+    },
   },
   {
     id: 3, title: 'Noir Supply', eyebrow: 'Editorial shopping',
     description: 'An immersive Shopify experience blending editorial storytelling with a frictionless shopping journey.',
     categories: ['Shopify', 'React'], stack: ['Shopify', 'Hydrogen', 'React', 'GSAP'],
     metric: '96 Lighthouse', tone: 'amber', github: 'https://github.com/', live: 'https://example.com', featured: true,
+    caseStudy: {
+      problem: 'The fashion brand needed a digital experience that matched their editorial photography and storytelling approach. The existing Shopify theme was too rigid and generic, failing to convey the brand\'s premium identity.',
+      approach: 'We built a custom Shopify Hydrogen storefront with React, combining editorial storytelling with commerce. Rich media layouts, scroll-driven narrative sections, and custom product interactions create an immersive shopping experience. GSAP powers smooth transitions between editorial content and product showcases.',
+      results: 'Achieved a 96 Lighthouse performance score. Average time-on-site increased by 4.1x. The editorial approach drove a 67% higher add-to-cart rate compared to the previous traditional product grid layout.',
+      highlights: ['96 Lighthouse performance', '4.1x increase in time-on-site', '67% higher add-to-cart rate', 'Custom Hydrogen storefront'],
+    },
   },
   {
     id: 4, title: 'Orbit Workspace', eyebrow: 'Calm team productivity',
     description: 'A focused project workspace with smart automation, shared views, and beautifully simple reporting.',
     categories: ['MERN', 'React', 'Node'], stack: ['React', 'MongoDB', 'Node.js', 'AWS'],
     metric: '4.8/5 rating', tone: 'cyan', github: 'https://github.com/', live: 'https://example.com',
+    caseStudy: {
+      problem: 'Teams were overwhelmed by bloated project management tools with steep learning curves. The client wanted a focused, intuitive workspace that teams would actually want to use daily—not another tool that required training sessions.',
+      approach: 'We built a streamlined MERN application prioritizing clarity and calm. Smart automation handles routine task management, while shared views give teams real-time visibility. The interface was designed with deliberate whitespace, restrained interactions, and progressive disclosure to reduce cognitive load.',
+      results: 'The product earned a 4.8/5 rating from early adopters. Onboarding time was under 3 minutes. Teams using Orbit reported 31% fewer meetings because shared visibility replaced status update overhead.',
+      highlights: ['4.8/5 user rating', 'Under 3-minute onboarding', '31% fewer status meetings', 'Automated task management'],
+    },
   },
 ]
 

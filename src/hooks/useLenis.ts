@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export function useLenis() {
   useEffect(() => {
@@ -18,8 +17,6 @@ export function useLenis() {
       touchInertiaMultiplier: 28,
       gestureOrientation: 'vertical',
     })
-
-    lenis.on('scroll', ScrollTrigger.update)
 
     let frame = 0
     const raf = (time: number) => {

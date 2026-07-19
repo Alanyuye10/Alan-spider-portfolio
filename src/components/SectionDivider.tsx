@@ -22,14 +22,14 @@ export function SectionDivider() {
       <svg viewBox="0 0 800 80" preserveAspectRatio="none" width="100%" height="100%">
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(239,68,68,.12)" />
-            <stop offset="50%" stopColor="rgba(59,130,246,.08)" />
-            <stop offset="100%" stopColor="rgba(239,68,68,.04)" />
+            <stop offset="0%" stopColor="rgba(190,18,60,.12)" />
+            <stop offset="50%" stopColor="rgba(79,70,229,.08)" />
+            <stop offset="100%" stopColor="rgba(190,18,60,.04)" />
           </linearGradient>
           <linearGradient id={webGradId} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(239,68,68,.25)" />
-            <stop offset="50%" stopColor="rgba(59,130,246,.15)" />
-            <stop offset="100%" stopColor="rgba(239,68,68,.08)" />
+            <stop offset="0%" stopColor="rgba(190,18,60,.25)" />
+            <stop offset="50%" stopColor="rgba(79,70,229,.15)" />
+            <stop offset="100%" stopColor="rgba(190,18,60,.08)" />
           </linearGradient>
         </defs>
         {paths.map((d, index) => (

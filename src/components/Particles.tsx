@@ -24,6 +24,7 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
   const particlesRef = useRef<Particle[]>([])
   const frameRef = useRef<number>(0)
   const skipRef = useRef(0)
+  const observerRef = useRef<IntersectionObserver | null>(null)
 
   const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
@@ -66,7 +67,9 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
     resize()
     window.addEventListener('resize', resize)
 
+    let paused = false
     const animate = () => {
+      if (paused) { frameRef.current = requestAnimationFrame(animate); return }
       skipRef.current++
       if (skipRef.current % 2 !== 0) { frameRef.current = requestAnimationFrame(animate); return }
       const w = canvas.offsetWidth
@@ -99,11 +102,17 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
       frameRef.current = requestAnimationFrame(animate)
     }
 
+    observerRef.current = new IntersectionObserver(([entry]) => {
+      paused = !entry.isIntersecting
+    }, { threshold: 0 })
+    observerRef.current.observe(canvas)
+
     frameRef.current = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(frameRef.current)
       window.removeEventListener('resize', resize)
+      observerRef.current?.disconnect()
     }
   }, [init, color, isReduced])
 

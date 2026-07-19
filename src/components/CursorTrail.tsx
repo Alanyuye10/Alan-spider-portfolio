@@ -7,9 +7,9 @@ export function CursorTrail() {
   const [ripples, setRipples] = useState<Ripple[]>([])
   const idRef = useRef(0)
   const trailRef = useRef<HTMLDivElement>(null)
+  const dotRefs = useRef<(HTMLElement | null)[]>([null, null, null])
   const posRef = useRef([{ x: -100, y: -100 }, { x: -100, y: -100 }, { x: -100, y: -100 }])
   const rafRef = useRef<number>(0)
-  const skipRef = useRef(0)
   const isReduced = typeof window !== 'undefined' && (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
   useEffect(() => {
@@ -25,16 +25,15 @@ export function CursorTrail() {
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
     const animate = () => {
-      skipRef.current++
-      const dots = trailRef.current?.querySelectorAll('.cursor-trail__dot')
-      if (!dots) { rafRef.current = requestAnimationFrame(animate); return }
+      const dots = dotRefs.current
+      if (!dots[0] || !dots[1] || !dots[2]) { rafRef.current = requestAnimationFrame(animate); return }
 
       for (let i = 1; i < 3; i++) {
         const prev = posRef.current[i - 1]
         const curr = posRef.current[i]
         curr.x = lerp(curr.x, prev.x, 0.18)
         curr.y = lerp(curr.y, prev.y, 0.18)
-        const dot = dots[i - 1] as HTMLElement
+        const dot = dots[i - 1]
         if (dot) dot.style.transform = `translate(${curr.x - 4}px, ${curr.y - 4}px)`
       }
       rafRef.current = requestAnimationFrame(animate)
@@ -56,7 +55,7 @@ export function CursorTrail() {
   return (
     <div ref={trailRef} className="cursor-trail" aria-hidden="true">
       {[0, 1, 2].map((i) => (
-        <span key={i} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13, background: `rgba(96,165,250,${0.5 - i * 0.14})`, willChange: 'transform' }} />
+        <span key={i} ref={(el) => { dotRefs.current[i] = el }} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13, background: `rgba(99,102,241,${0.5 - i * 0.14})`, willChange: 'transform' }} />
       ))}
       <AnimatePresence>
         {ripples.map((ripple) => (

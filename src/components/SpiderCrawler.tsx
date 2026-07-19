@@ -38,8 +38,8 @@ export function SpiderCrawler() {
       <svg width="28" height="24" viewBox="0 0 28 24" fill="none">
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ef4444" />
-            <stop offset="100%" stopColor="#3b82f6" />
+            <stop offset="0%" stopColor="#be123c" />
+            <stop offset="100%" stopColor="#4f46e5" />
           </linearGradient>
         </defs>
         <ellipse cx="14" cy="13" rx="5" ry="6" fill={`url(#${gradientId})`} opacity="0.7" />

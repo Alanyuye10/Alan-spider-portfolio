@@ -1,5 +1,6 @@
 import { motion, useAnimation, useInView } from 'framer-motion'
 import { useEffect, useRef, type ReactNode } from 'react'
+import { easePremium } from '../constants/spring'
 import { cn } from '../utils/cn'
 
 interface SectionRevealProps {
@@ -24,7 +25,7 @@ export function SectionReveal({ children, className, delay = 0 }: SectionRevealP
       ref={ref}
       initial={{ opacity: 0, scale: 0.82 }}
       animate={controls}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, delay, ease: easePremium }}
       className={cn('section-depth', className)}
       style={{ transformPerspective: 1000 }}
     >

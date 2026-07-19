@@ -5,14 +5,15 @@ import { cn } from '../utils/cn'
 interface TiltCardProps {
   children: ReactNode
   className?: string
+  onClick?: () => void
 }
 
-export function TiltCard({ children, className }: TiltCardProps) {
+export function TiltCard({ children, className, onClick }: TiltCardProps) {
   const rotateX = useSpring(0, { stiffness: 170, damping: 22 })
   const rotateY = useSpring(0, { stiffness: 170, damping: 22 })
   const glowX = useMotionValue(50)
   const glowY = useMotionValue(50)
-  const glow = useMotionTemplate`radial-gradient(420px circle at ${glowX}% ${glowY}%, rgba(239,68,68,.13), rgba(59,130,246,.06), transparent 44%)`
+  const glow = useMotionTemplate`radial-gradient(420px circle at ${glowX}% ${glowY}%, rgba(190,18,60,.13), rgba(79,70,229,.06), transparent 44%)`
 
   const handleMove = (event: MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -31,7 +32,8 @@ export function TiltCard({ children, className }: TiltCardProps) {
       className={cn('tilt-card', className)}
       onMouseMove={handleMove}
       onMouseLeave={reset}
-      style={{ rotateX, rotateY, backgroundImage: glow, transformPerspective: 1000 }}
+      onClick={onClick}
+      style={{ rotateX, rotateY, backgroundImage: glow, transformPerspective: 1000, cursor: onClick ? 'pointer' : undefined }}
     >
       {children}
     </motion.div>

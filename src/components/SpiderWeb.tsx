@@ -29,13 +29,13 @@ export function SpiderWeb({ opacity = 1, size = 1, className, animated = true }:
       <svg viewBox="0 0 200 200" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ef4444" stopOpacity="0.5" />
-            <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.15" />
+            <stop offset="0%" stopColor="#be123c" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#4f46e5" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#be123c" stopOpacity="0.15" />
           </linearGradient>
           <radialGradient id={`${gradientId}-glow`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ef4444" stopOpacity="0.15" />
-            <stop offset="60%" stopColor="#3b82f6" stopOpacity="0.06" />
+            <stop offset="0%" stopColor="#be123c" stopOpacity="0.15" />
+            <stop offset="60%" stopColor="#4f46e5" stopOpacity="0.06" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -77,7 +77,7 @@ export function SpiderWeb({ opacity = 1, size = 1, className, animated = true }:
           )
         })}
 
-        <circle cx={center} cy={center} r="1.8" fill="#ef4444" opacity="0.5" />
+        <circle cx={center} cy={center} r="1.8" fill="#be123c" opacity="0.5" />
       </svg>
     </motion.div>
   )

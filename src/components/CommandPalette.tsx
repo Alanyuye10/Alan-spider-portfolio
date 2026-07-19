@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { FiArrowDown, FiBriefcase, FiDownload, FiHome, FiMail, FiUser, FiX } from 'react-icons/fi'
+import { FiArrowDown, FiBriefcase, FiDownload, FiHome, FiMail, FiSmile, FiUser, FiX } from 'react-icons/fi'
+import { useTheme } from '../contexts/ThemeContext'
 
 interface CommandPaletteProps {
   open: boolean
@@ -16,6 +17,7 @@ const commands = [
 
 export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState('')
+  const { showEasterEggs, toggleEasterEggs } = useTheme()
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -28,7 +30,12 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
   useEffect(() => { if (!open) setQuery('') }, [open])
 
-  const filtered = commands.filter((command) => command.label.toLowerCase().includes(query.toLowerCase()))
+  const allCommands = [
+    ...commands,
+    { label: showEasterEggs ? 'Hide easter eggs' : 'Show easter eggs', icon: FiSmile, action: () => { toggleEasterEggs(); onClose() } },
+  ]
+
+  const filtered = allCommands.filter((command) => command.label.toLowerCase().includes(query.toLowerCase()))
 
   return (
     <AnimatePresence>
@@ -40,6 +47,9 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
               <small>QUICK NAVIGATION</small>
               {filtered.map((command) => {
                 const Icon = command.icon
+                if ('action' in command) {
+                  return <button key={command.label} type="button" onClick={command.action} style={{ width: '100%', border: 0, background: 'transparent', padding: '13px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderRadius: 10, color: 'var(--muted)', cursor: 'pointer', fontSize: '.82rem' }}><span><Icon />{command.label}</span></button>
+                }
                 return <a key={command.label} href={command.href} onClick={onClose}><span><Icon />{command.label}</span><kbd>{command.meta}</kbd></a>
               })}
               {filtered.length === 0 && <p className="no-results">No matching commands.</p>}

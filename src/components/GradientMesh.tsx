@@ -5,7 +5,7 @@ interface GradientMeshProps {
   speed?: number
 }
 
-export function GradientMesh({ colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#050816'], speed = 0.15 }: GradientMeshProps) {
+export function GradientMesh({ colors = ['#4f46e5', '#8b5cf6', '#06b6d4', '#050816'], speed = 0.15 }: GradientMeshProps) {
   const blobsRef = useRef<HTMLDivElement[]>([])
   const frameRef = useRef<number>(0)
   const skipRef = useRef(0)
@@ -23,6 +23,7 @@ export function GradientMesh({ colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#0508
     const animate = () => {
       skipRef.current++
       if (skipRef.current % 2 !== 0) { frameRef.current = requestAnimationFrame(animate); return }
+      if (document.hidden) { frameRef.current = requestAnimationFrame(animate); return }
 
       blobsRef.current.forEach((blob, i) => {
         if (!blob) return

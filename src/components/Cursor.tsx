@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Cursor() {
   const cursorX = useSpring(useMotionValue(-100), { stiffness: 700, damping: 48 })
@@ -8,17 +8,40 @@ export function Cursor() {
   const glowY = useSpring(useMotionValue(-300), { stiffness: 75, damping: 28 })
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
+  const visibleRef = useRef(false)
+  const activeRef = useRef(false)
+  const lastActiveCheckRef = useRef(0)
+  const lastTargetRef = useRef<EventTarget | null>(null)
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let ticking = false
     const move = (event: PointerEvent) => {
       cursorX.set(event.clientX - 6); cursorY.set(event.clientY - 6)
       glowX.set(event.clientX - 220); glowY.set(event.clientY - 220)
-      setVisible(true)
-      const target = event.target as HTMLElement
-      setActive(Boolean(target.closest('a, button, input, textarea, [data-cursor]')))
+      lastTargetRef.current = event.target
+      if (!visibleRef.current) {
+        visibleRef.current = true
+        setVisible(true)
+      }
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          ticking = false
+          const now = performance.now()
+          if (now - lastActiveCheckRef.current > 100) {
+            lastActiveCheckRef.current = now
+            const target = lastTargetRef.current as HTMLElement
+            const isActive = Boolean(target?.closest('a, button, input, textarea, [data-cursor]'))
+            if (isActive !== activeRef.current) {
+              activeRef.current = isActive
+              setActive(isActive)
+            }
+          }
+        })
+        ticking = true
+      }
     }
-    const hide = () => setVisible(false)
+    const hide = () => { visibleRef.current = false; setVisible(false) }
     window.addEventListener('pointermove', move)
     document.documentElement.addEventListener('mouseleave', hide)
     return () => { window.removeEventListener('pointermove', move); document.documentElement.removeEventListener('mouseleave', hide) }

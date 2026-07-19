@@ -1,31 +1,27 @@
-import { useLayoutEffect, type RefObject } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { useEffect, type RefObject } from 'react'
 
 export function useGsapReveal(scope: RefObject<HTMLElement | null>) {
-  useLayoutEffect(() => {
-    const root = scope.current
-    if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  useEffect(() => {
+    if (!scope.current) return
+    const elements = scope.current.querySelectorAll<HTMLElement>('[data-gsap-reveal]')
+    const observers: IntersectionObserver[] = []
 
-    const context = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('[data-gsap-reveal]').forEach((element) => {
-        gsap.fromTo(
-          element,
-          { scale: 0.82, opacity: 0, filter: 'blur(8px)' },
-          {
-            scale: 1,
-            opacity: 1,
-            filter: 'blur(0px)',
-            duration: 0.9,
-            ease: 'power3.out',
-            scrollTrigger: { trigger: element, start: 'top 88%', once: true },
-          },
-        )
-      })
-    }, root)
+    elements.forEach((el) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            el.style.opacity = '1'
+            el.style.transform = 'scale(1)'
+            el.style.filter = 'blur(0px)'
+            observer.disconnect()
+          }
+        },
+        { threshold: 0.12 },
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
 
-    return () => context.revert()
+    return () => observers.forEach((o) => o.disconnect())
   }, [scope])
 }

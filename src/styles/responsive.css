@@ -98,7 +98,8 @@
   .hero-image-wrap img { object-position: 67% center; }
   .hero-orbit { inset: 10% 12% 8% 15%; }
   .hero-float-card { transform: scale(.86); }.hero-float-card--top { right: 16%; }.hero-float-card--bottom { left: 16%; bottom: 11%; }
-  .scroll-cue span { display: none; }
+  .terminal-cue__prompt { display: none; }
+  .terminal-cue { font-size: 9px; bottom: 24px; }
   .about-visual { min-height: 440px; }.about-image { inset: 0 5% 8% 0; }.about-code-card { transform: scale(.87); transform-origin: bottom right; }.about-stamp { transform: scale(.82) rotate(8deg); transform-origin: top right; }
   .about-content .about-lead { font-size: 1.35rem; }.about-content > p { font-size: .88rem; }.about-principles { gap: 13px; }
   .stat-grid { gap: 9px; }.stat-card { min-height: 150px; padding: 18px; }.stat-card strong { font-size: 2.5rem; }
@@ -126,6 +127,7 @@
   .hero-visual { height: 390px; margin: 15px -10vw 0 -8vw; }
   .hero-float-card--top { display: none; }
   .hero-float-card--bottom { transform: scale(.75); bottom: 8%; left: 4%; }
+  .terminal-cue { display: none; }
   .hero-role strong { min-width: 120px; font-size: .85rem; }
   .hero-role { font-size: .75rem; gap: 8px; }
   .availability-pill { font-size: 7px; padding: 5px 8px; gap: 6px; }

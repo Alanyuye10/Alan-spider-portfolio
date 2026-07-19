@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useState, type ReactNode } from 'react'
 import { CommandPalette } from '../components/CommandPalette'
 import { Cursor } from '../components/Cursor'
 import { CursorTrail } from '../components/CursorTrail'
@@ -7,20 +7,27 @@ import { GradientMesh } from '../components/GradientMesh'
 import { Navbar } from '../components/Navbar'
 import { PageLoader } from '../components/PageLoader'
 import { ScrollProgress } from '../components/ScrollProgress'
+import { ComicBurst } from '../components/ComicBurst'
 import { SpiderCrawler } from '../components/SpiderCrawler'
 import { SpiderRappel } from '../components/SpiderRappel'
+import { SpideySense } from '../components/SpideySense'
 import { WebShooter } from '../components/WebShooter'
+import { WebSwing } from '../components/WebSwing'
+import { ThemeProvider, useTheme } from '../contexts/ThemeContext'
 import { useLenis } from '../hooks/useLenis'
 
-export function PortfolioLayout({ children }: { children: ReactNode }) {
+function LayoutInner({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
+  const [decorReady, setDecorReady] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
+  const { showEasterEggs } = useTheme()
   useLenis()
 
   const closeCommand = useCallback(() => setCommandOpen(false), [])
 
   useEffect(() => {
     const timer = window.setTimeout(() => setLoading(false), 900)
+    const decorTimer = window.setTimeout(() => setDecorReady(true), 3000)
     const hotkey = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
         event.preventDefault()
@@ -28,7 +35,7 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
       }
     }
     window.addEventListener('keydown', hotkey)
-    return () => { window.clearTimeout(timer); window.removeEventListener('keydown', hotkey) }
+    return () => { window.clearTimeout(timer); window.clearTimeout(decorTimer); window.removeEventListener('keydown', hotkey) }
   }, [])
 
   useEffect(() => {
@@ -43,13 +50,24 @@ export function PortfolioLayout({ children }: { children: ReactNode }) {
       <Cursor />
       <CursorTrail />
       <ScrollProgress />
-      <SpiderCrawler />
-      <SpiderRappel />
-      <WebShooter />
+      {showEasterEggs && <SpiderCrawler />}
+      {showEasterEggs && <SpiderRappel />}
+      {decorReady && <ComicBurst />}
+      {decorReady && <SpideySense />}
+      {decorReady && <WebSwing />}
+      {decorReady && <WebShooter />}
       <Navbar onCommand={() => setCommandOpen(true)} />
       {children}
       <Footer />
       <CommandPalette open={commandOpen} onClose={closeCommand} />
     </>
+  )
+}
+
+export function PortfolioLayout({ children }: { children: ReactNode }) {
+  return (
+    <ThemeProvider>
+      <LayoutInner>{children}</LayoutInner>
+    </ThemeProvider>
   )
 }

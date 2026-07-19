@@ -12,6 +12,12 @@ export interface Project {
   github: string
   live: string
   featured?: boolean
+  caseStudy?: {
+    problem: string
+    approach: string
+    results: string
+    highlights: string[]
+  }
 }
 
 export interface Skill {
