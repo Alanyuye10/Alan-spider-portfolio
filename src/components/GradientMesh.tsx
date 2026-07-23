@@ -5,14 +5,15 @@ interface GradientMeshProps {
   speed?: number
 }
 
-export function GradientMesh({ colors = ['#4f46e5', '#8b5cf6', '#06b6d4', '#050816'], speed = 0.15 }: GradientMeshProps) {
+export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#02050b'], speed = 0.12 }: GradientMeshProps) {
   const blobsRef = useRef<HTMLDivElement[]>([])
   const frameRef = useRef<number>(0)
   const skipRef = useRef(0)
   const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
 
   useEffect(() => {
-    if (isReduced) return
+    if (isReduced || isTouch) return
     const positions = blobsRef.current.map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -21,20 +22,18 @@ export function GradientMesh({ colors = ['#4f46e5', '#8b5cf6', '#06b6d4', '#0508
     }))
 
     const animate = () => {
-      skipRef.current++
-      if (skipRef.current % 2 !== 0) { frameRef.current = requestAnimationFrame(animate); return }
       if (document.hidden) { frameRef.current = requestAnimationFrame(animate); return }
 
       blobsRef.current.forEach((blob, i) => {
         if (!blob) return
         const p = positions[i]
-        p.x += p.vx * 0.2
-        p.y += p.vy * 0.2
+        p.x += p.vx * 0.12
+        p.y += p.vy * 0.12
         if (p.x > 110) p.x = -10
         if (p.x < -10) p.x = 110
         if (p.y > 110) p.y = -10
         if (p.y < -10) p.y = 110
-        blob.style.transform = `translate(${p.x}%, ${p.y}%)`
+        blob.style.transform = `translate3d(${p.x}%, ${p.y}%, 0)`
       })
       frameRef.current = requestAnimationFrame(animate)
     }
@@ -43,7 +42,7 @@ export function GradientMesh({ colors = ['#4f46e5', '#8b5cf6', '#06b6d4', '#0508
     return () => cancelAnimationFrame(frameRef.current)
   }, [isReduced, speed])
 
-  if (isReduced) return null
+  if (isReduced || isTouch) return null
 
   return (
     <div className="gradient-mesh" aria-hidden="true">

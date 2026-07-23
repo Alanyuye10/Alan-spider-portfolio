@@ -27,11 +27,11 @@ export function SpiderRappel() {
       <svg width="28" height="50" viewBox="0 0 28 50" style={{ overflow: 'visible' }}>
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#be123c" />
-            <stop offset="100%" stopColor="#4f46e5" />
+            <stop offset="0%" stopColor="#e11d2e" />
+            <stop offset="100%" stopColor="#0a1f44" />
           </linearGradient>
         </defs>
-        <line x1="14" y1="0" x2="14" y2="24" stroke="rgba(190,18,60,0.25)" strokeWidth="1" strokeDasharray="2 3" />
+        <line x1="14" y1="0" x2="14" y2="24" stroke="rgba(184,195,211,0.3)" strokeWidth="1" strokeDasharray="2 3" />
         <ellipse cx="14" cy="38" rx="5" ry="6" fill={`url(#${gradientId})`} opacity="0.7" />
         <circle cx="14" cy="32" r="3.5" fill={`url(#${gradientId})`} />
         <circle cx="14" cy="32" r="1.5" fill="#fff" opacity="0.6" />

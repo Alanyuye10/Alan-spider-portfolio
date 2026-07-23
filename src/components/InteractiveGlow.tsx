@@ -13,10 +13,11 @@ export function InteractiveGlow({ children, className }: InteractiveGlowProps) {
   const springX = useSpring(mouseX, { stiffness: 120, damping: 22 })
   const springY = useSpring(mouseY, { stiffness: 120, damping: 22 })
 
-const glow = useMotionTemplate`radial-gradient(circle at ${springX}% ${springY}%, rgba(99,102,241,.14), rgba(139,92,246,.07) 40%, transparent 60%)`
-const borderGlow = useMotionTemplate`radial-gradient(circle at ${springX}% ${springY}%, rgba(99,102,241,.35), rgba(139,92,246,.2) 40%, transparent 60%)`
+const glow = useMotionTemplate`radial-gradient(circle at ${springX}% ${springY}%, rgba(225,29,46,.16), rgba(10,31,68,.14) 42%, transparent 62%)`
+const borderGlow = useMotionTemplate`radial-gradient(circle at ${springX}% ${springY}%, rgba(225,29,46,.45), rgba(184,195,211,.22) 42%, transparent 62%)`
 
   const handleMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia('(pointer: coarse)').matches) return
     const rect = event.currentTarget.getBoundingClientRect()
     mouseX.set(((event.clientX - rect.left) / rect.width) * 100)
     mouseY.set(((event.clientY - rect.top) / rect.height) * 100)

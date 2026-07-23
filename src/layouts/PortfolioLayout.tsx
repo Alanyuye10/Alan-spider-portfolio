@@ -11,8 +11,10 @@ import { ComicBurst } from '../components/ComicBurst'
 import { SpiderCrawler } from '../components/SpiderCrawler'
 import { SpiderRappel } from '../components/SpiderRappel'
 import { SpideySense } from '../components/SpideySense'
+import { SpideySenseAlert } from '../components/SpideySenseAlert'
 import { WebShooter } from '../components/WebShooter'
 import { WebSwing } from '../components/WebSwing'
+import { WebTether } from '../components/WebTether'
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext'
 import { useLenis } from '../hooks/useLenis'
 
@@ -21,6 +23,7 @@ function LayoutInner({ children }: { children: ReactNode }) {
   const [decorReady, setDecorReady] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
   const { showEasterEggs } = useTheme()
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
   useLenis()
 
   const closeCommand = useCallback(() => setCommandOpen(false), [])
@@ -46,16 +49,18 @@ function LayoutInner({ children }: { children: ReactNode }) {
   return (
     <>
       <PageLoader visible={loading} />
-      {!loading && <GradientMesh />}
-      <Cursor />
-      <CursorTrail />
+      {!isTouch && !loading && <GradientMesh />}
+      {!isTouch && <Cursor />}
+      {!isTouch && <CursorTrail />}
+      {!isTouch && <WebTether />}
+      {!isTouch && <SpideySenseAlert />}
       <ScrollProgress />
       {showEasterEggs && <SpiderCrawler />}
-      {showEasterEggs && <SpiderRappel />}
-      {decorReady && <ComicBurst />}
-      {decorReady && <SpideySense />}
-      {decorReady && <WebSwing />}
-      {decorReady && <WebShooter />}
+      {!isTouch && showEasterEggs && <SpiderRappel />}
+      {!isTouch && decorReady && <ComicBurst />}
+      {!isTouch && decorReady && <SpideySense />}
+      {!isTouch && decorReady && <WebSwing />}
+      {!isTouch && decorReady && <WebShooter />}
       <Navbar onCommand={() => setCommandOpen(true)} />
       {children}
       <Footer />

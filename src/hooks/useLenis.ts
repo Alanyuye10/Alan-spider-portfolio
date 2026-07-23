@@ -8,13 +8,10 @@ export function useLenis() {
     if (reduceMotion) return
 
     const lenis = new Lenis({
-      duration: isTouch ? 0.6 : 1.05,
+      duration: isTouch ? 0.5 : 0.85,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 0.8,
-      syncTouch: true,
-      touchInertiaMultiplier: 28,
+      wheelMultiplier: isTouch ? 0.6 : 1.0,
       gestureOrientation: 'vertical',
     })
 
@@ -31,3 +28,4 @@ export function useLenis() {
     }
   }, [])
 }
+

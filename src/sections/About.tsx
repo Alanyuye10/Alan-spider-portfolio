@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { FiArrowUpRight, FiCode, FiLayers, FiZap } from 'react-icons/fi'
-import heroVisual from '../assets/developer-orbit.jpg'
+import alanPhoto from '../assets/Alan.png'
 import { Counter } from '../components/Counter'
 import { ParallaxLayer } from '../components/ParallaxLayer'
 import { WebReveal } from '../components/WebReveal'
@@ -18,7 +18,7 @@ export function About() {
       <SectionHeading index="01" eyebrow="About me" title="Engineering with empathy. Designing with purpose." description="I bridge product thinking, visual craft, and robust engineering to build work that earns attention—and keeps it." />
       <div className="about-grid">
         <div className="about-visual" data-gsap-reveal>
-          <div className="about-image"><ParallaxLayer speed={-0.12}><img src={heroVisual} alt="Futuristic development system artwork" loading="lazy" /></ParallaxLayer><div className="about-image__label"><span>ALAN.DEV</span><span>INDIA · REMOTE</span></div></div>
+          <div className="about-image"><ParallaxLayer speed={-0.12}><img src={alanPhoto} alt="Alan — Full Stack Developer" loading="lazy" style={{ objectFit: 'cover', objectPosition: 'top center', width: '100%', height: '100%' }} /></ParallaxLayer><div className="about-image__label"><span>ALAN.DEV</span><span>INDIA · REMOTE</span></div></div>
           <div className="about-code-card"><div><span /><span /><span /></div><code><span style={{color: '#c084fc'}}>function</span> <span style={{color: '#60a5fa'}}>createImpact</span>() &#123;<br />&nbsp;&nbsp;<span style={{color: '#c084fc'}}>const</span> craft = &#123;<br />&nbsp;&nbsp;&nbsp;&nbsp;detail: <span style={{color: '#f87171'}}>true</span>,<br />&nbsp;&nbsp;&nbsp;&nbsp;curiosity: <span style={{color: '#fbbf24'}}>'∞'</span>,<br />&nbsp;&nbsp;&nbsp;&nbsp;purpose: <span style={{color: '#34d399'}}>'people first'</span>,<br />&nbsp;&nbsp;&#125;<br />&nbsp;&nbsp;<span style={{color: '#60a5fa'}}>return</span> craft<br />&#125;<span className="code-cursor" /></code></div>
           <div className="about-stamp">CRAFTED<br />WITH INTENT<FiArrowUpRight /></div>
         </div>

@@ -53,11 +53,11 @@ function BurstView({ x, y }: { x: number; y: number }) {
     >
       <defs>
         <linearGradient id={`burst-${x}-${y}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#be123c" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.4" />
+          <stop offset="0%" stopColor="#e11d2e" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#b8c3d3" stopOpacity="0.5" />
         </linearGradient>
       </defs>
-      <circle cx={size / 2} cy={size / 2} r={1.5} fill="#be123c" opacity="0.8" />
+      <circle cx={size / 2} cy={size / 2} r={1.5} fill="#e11d2e" opacity="0.85" />
       {Array.from({ length: lines }, (_, i) => {
         const angle = (i * 360) / lines
         const rad = (angle * Math.PI) / 180

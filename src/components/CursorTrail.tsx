@@ -55,7 +55,7 @@ export function CursorTrail() {
   return (
     <div ref={trailRef} className="cursor-trail" aria-hidden="true">
       {[0, 1, 2].map((i) => (
-        <span key={i} ref={(el) => { dotRefs.current[i] = el }} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13, background: `rgba(99,102,241,${0.5 - i * 0.14})`, willChange: 'transform' }} />
+        <span key={i} ref={(el) => { dotRefs.current[i] = el }} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13, background: `rgba(225,29,46,${0.5 - i * 0.14})`, willChange: 'transform' }} />
       ))}
       <AnimatePresence>
         {ripples.map((ripple) => (

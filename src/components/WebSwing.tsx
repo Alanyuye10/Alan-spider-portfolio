@@ -49,9 +49,9 @@ export function WebSwing() {
       >
         <defs>
           <linearGradient id="swing-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#be123c" stopOpacity="0.6" />
-            <stop offset="50%" stopColor="#4f46e5" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#be123c" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#e11d2e" stopOpacity="0.68" />
+            <stop offset="50%" stopColor="#b8c3d3" stopOpacity="0.36" />
+            <stop offset="100%" stopColor="#0a1f44" stopOpacity="0.28" />
           </linearGradient>
           <filter id="swing-glow">
             <feGaussianBlur stdDeviation="2" result="blur" />
@@ -95,8 +95,8 @@ export function WebSwing() {
             key={i}
             style={{
               position: 'absolute', width: 2 + Math.random() * 3, height: 2 + Math.random() * 3,
-              borderRadius: '50%', background: '#be123c',
-              boxShadow: '0 0 4px rgba(190,18,60,0.4)',
+              borderRadius: '50%', background: '#e11d2e',
+              boxShadow: '0 0 4px rgba(225,29,46,0.5)',
             }}
             initial={{ x: 0, y: 0, opacity: 1 }}
             animate={show ? { x: -20 - Math.random() * 40, y: -10 - Math.random() * 30, opacity: 0 } : { x: 0, y: 0 }}

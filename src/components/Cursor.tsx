@@ -2,10 +2,10 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 export function Cursor() {
-  const cursorX = useSpring(useMotionValue(-100), { stiffness: 700, damping: 48 })
-  const cursorY = useSpring(useMotionValue(-100), { stiffness: 700, damping: 48 })
-  const glowX = useSpring(useMotionValue(-300), { stiffness: 75, damping: 28 })
-  const glowY = useSpring(useMotionValue(-300), { stiffness: 75, damping: 28 })
+  const cursorX = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
+  const cursorY = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
+  const glowX = useSpring(useMotionValue(-300), { stiffness: 280, damping: 35 })
+  const glowY = useSpring(useMotionValue(-300), { stiffness: 280, damping: 35 })
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
   const visibleRef = useRef(false)

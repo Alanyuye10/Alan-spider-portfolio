@@ -70,8 +70,6 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
     let paused = false
     const animate = () => {
       if (paused) { frameRef.current = requestAnimationFrame(animate); return }
-      skipRef.current++
-      if (skipRef.current % 2 !== 0) { frameRef.current = requestAnimationFrame(animate); return }
       const w = canvas.offsetWidth
       const h = canvas.offsetHeight
       ctx.clearRect(0, 0, w, h)
@@ -95,9 +93,11 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
 
         ctx.beginPath()
         ctx.arc((p.x / 100) * w, (p.y / 100) * h, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = color.replace('0.6', String(p.opacity * lifeOpacity * 0.6))
+        ctx.fillStyle = color
+        ctx.globalAlpha = p.opacity * lifeOpacity
         ctx.fill()
       })
+      ctx.globalAlpha = 1
 
       frameRef.current = requestAnimationFrame(animate)
     }

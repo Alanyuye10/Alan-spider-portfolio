@@ -48,7 +48,7 @@ export function SpideySense() {
           x: smoothX, y: smoothY,
           position: 'fixed', top: -120, left: -120, width: 240, height: 240,
           borderRadius: '50%', pointerEvents: 'none', zIndex: 9998,
-          background: 'radial-gradient(circle, rgba(190,18,60,0.08) 0%, rgba(79,70,229,0.04) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(225,29,46,0.1) 0%, rgba(10,31,68,0.08) 42%, transparent 72%)',
         }}
       />
       <div style={{ position: 'fixed', inset: 0, zIndex: 9997, pointerEvents: 'none' }} aria-hidden="true">
@@ -57,8 +57,8 @@ export function SpideySense() {
             key={ring.id}
             style={{
               position: 'absolute', left: ring.x - 20, top: ring.y - 20, width: 40, height: 40,
-              borderRadius: '50%', border: '1.5px solid rgba(190,18,60,0.5)',
-              boxShadow: '0 0 12px rgba(190,18,60,0.3), inset 0 0 12px rgba(79,70,229,0.15)',
+              borderRadius: '50%', border: '1.5px solid rgba(225,29,46,0.62)',
+              boxShadow: '0 0 14px rgba(225,29,46,0.38), inset 0 0 14px rgba(10,31,68,0.28)',
             }}
             initial={{ opacity: 0.8, scale: 0.3 }}
             animate={{ opacity: 0, scale: 4 }}

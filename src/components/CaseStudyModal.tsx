@@ -69,7 +69,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 {project.stack.map((tech) => (
                   <span key={tech} style={{ padding: '6px 10px', border: '1px solid var(--line)', borderRadius: 8, color: '#a8b4c7', font: '8px var(--mono)' }}>{tech}</span>
                 ))}
-                <span style={{ padding: '6px 10px', borderRadius: 8, background: 'linear-gradient(135deg, rgba(190,18,60,.12), rgba(79,70,229,.1))', color: 'var(--accent-secondary-bright)', font: '8px var(--mono)', border: '1px solid rgba(99,102,241,.2)' }}>{project.metric}</span>
+                <span style={{ padding: '6px 10px', borderRadius: 8, background: 'linear-gradient(135deg, rgba(225,29,46,.14), rgba(10,31,68,.24))', color: 'var(--silver-bright)', font: '8px var(--mono)', border: '1px solid rgba(225,29,46,.24)' }}>{project.metric}</span>
               </div>
 
               {project.caseStudy && (

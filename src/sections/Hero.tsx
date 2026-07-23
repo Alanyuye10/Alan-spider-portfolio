@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { FiArrowRight, FiDownload, FiMail } from 'react-icons/fi'
-import heroVisual from '../assets/developer-orbit.jpg'
+import heroVisual from '../assets/Alan.png'
 import { MagneticLink } from '../components/MagneticLink'
 import { ParallaxLayer } from '../components/ParallaxLayer'
 import { Particles } from '../components/Particles'
@@ -68,7 +68,7 @@ export function Hero() {
 
   return (
     <section id="hero" ref={sectionRef} className="hero section-shell" onMouseMove={handleMove}>
-      <Particles count={35} color="rgba(99, 102, 241, 0.4)" speed={0.12} />
+      <Particles count={35} color="rgba(225, 29, 46, 0.6)" speed={0.12} />
       <div className="hero-grid" aria-hidden="true" />
       <ParallaxLayer speed={-0.2}><div className="hero-ambient hero-ambient--one" aria-hidden="true" /></ParallaxLayer>
       <ParallaxLayer speed={-0.15}><div className="hero-ambient hero-ambient--two" aria-hidden="true" /></ParallaxLayer>
@@ -78,12 +78,12 @@ export function Hero() {
           <defs>
             <linearGradient id="skyline-grad" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="transparent" />
-              <stop offset="60%" stopColor="rgba(190,18,60,0.04)" />
-              <stop offset="100%" stopColor="rgba(79,70,229,0.08)" />
+              <stop offset="60%" stopColor="rgba(225,29,46,0.05)" />
+              <stop offset="100%" stopColor="rgba(10,31,68,0.18)" />
             </linearGradient>
           </defs>
           <rect width="1200" height="400" fill="url(#skyline-grad)" />
-          <g opacity="0.35" fill="rgba(190,18,60,0.12)">
+          <g opacity="0.35" fill="rgba(225,29,46,0.14)">
             <rect x="20" y="120" width="60" height="280" rx="2" />
             <rect x="90" y="80" width="45" height="320" rx="2" />
             <rect x="145" y="160" width="55" height="240" rx="2" />
@@ -102,7 +102,7 @@ export function Hero() {
             <rect x="1070" y="130" width="50" height="270" rx="2" />
             <rect x="1130" y="75" width="55" height="325" rx="2" />
           </g>
-          <g opacity="0.15" fill="rgba(79,70,229,0.15)">
+          <g opacity="0.18" fill="rgba(184,195,211,0.2)">
             {Array.from({ length: 12 }, (_, i) => (
               <rect key={i} x={30 + i * 98} y={60 + Math.sin(i * 1.7) * 50} width={2} height={6} rx={1} opacity={0.3 + Math.random() * 0.7} />
             ))}
@@ -136,7 +136,7 @@ export function Hero() {
       <motion.div className="hero-visual" style={{ x: imageX, y: imageY }} initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.75, duration: 1.1 }}>
         <motion.div className="hero-orbit" style={{ x: ringX, y: ringY }} aria-hidden="true"><i /><i /><i /></motion.div>
         <div className="hero-image-wrap">
-          <img src={heroVisual} alt="Abstract three-dimensional developer system with glass code panels" fetchPriority="high" />
+          <img src={heroVisual} alt="Alan — Full Stack MERN Developer" fetchPriority="high" style={{ objectFit: 'cover', objectPosition: 'top center' }} />
           <div className="hero-image-fade" />
         </div>
         <motion.div className="hero-float-card hero-float-card--top" drag dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }} dragElastic={0.1} whileHover={{ scale: 1.03 }} style={{ cursor: 'grab' }} animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }} whileTap={{ cursor: 'grabbing' }}><span>BUILD STATUS</span><strong><i /> All systems live</strong></motion.div>

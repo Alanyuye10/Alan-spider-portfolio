@@ -3,15 +3,15 @@
 @import "./sections.css";
 @import "./sections-extra.css";
 @import "./responsive.css";
+@import "./spider-theme.css";
 
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
-  --color-ink: #050816;
-  --color-panel: #0f172a;
-  --color-accent: #be123c;
-  --color-accent-secondary: #4f46e5;
-  --color-violet: #8b5cf6;
+  --color-ink: #02050b;
+  --color-panel: #071225;
+  --color-accent: #e11d2e;
+  --color-accent-secondary: #0a1f44;
+  --color-violet: #b8c3d3;
 }
-
 

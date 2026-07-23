@@ -10,7 +10,7 @@ interface Burst {
 }
 
 const WORDS = ['THWIP!', 'BAM!', 'POW!', 'KRAK!', 'ZAP!', 'WHAM!', 'FWIP!', 'SNAP!']
-const COLORS = ['#be123c', '#4f46e5', '#eab308', '#fff', '#22c55e', '#f97316']
+const COLORS = ['#e11d2e', '#b8c3d3', '#fff', '#ff5a69', '#5f8fd8']
 
 const lineCount = 10
 
@@ -62,8 +62,8 @@ function BurstView({ x, y, word, color }: Burst) {
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#be123c" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.3" />
+            <stop offset="0%" stopColor="#e11d2e" stopOpacity="0.75" />
+            <stop offset="100%" stopColor="#b8c3d3" stopOpacity="0.38" />
           </linearGradient>
         </defs>
         {Array.from({ length: lineCount }, (_, i) => {

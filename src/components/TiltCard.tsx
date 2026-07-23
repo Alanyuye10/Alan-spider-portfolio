@@ -13,9 +13,10 @@ export function TiltCard({ children, className, onClick }: TiltCardProps) {
   const rotateY = useSpring(0, { stiffness: 170, damping: 22 })
   const glowX = useMotionValue(50)
   const glowY = useMotionValue(50)
-  const glow = useMotionTemplate`radial-gradient(420px circle at ${glowX}% ${glowY}%, rgba(190,18,60,.13), rgba(79,70,229,.06), transparent 44%)`
+  const glow = useMotionTemplate`radial-gradient(420px circle at ${glowX}% ${glowY}%, rgba(225,29,46,.15), rgba(10,31,68,.12), transparent 46%)`
 
   const handleMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia('(pointer: coarse)').matches) return
     const rect = event.currentTarget.getBoundingClientRect()
     const px = (event.clientX - rect.left) / rect.width
     const py = (event.clientY - rect.top) / rect.height

@@ -35,13 +35,17 @@ export function Contact() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const target = event.currentTarget
     const rect = target.getBoundingClientRect()
+    const host = target.closest('label')
+    if (!host) return
     const ripple = document.createElement('span')
     ripple.className = 'form-ripple'
-    ripple.style.left = `${event.clientX - rect.left}px`
-    ripple.style.top = `${event.clientY - rect.top}px`
+    const x = event.clientX ? event.clientX - rect.left : rect.width / 2
+    const y = event.clientY ? event.clientY - rect.top : rect.height / 2
+    ripple.style.left = `${x}px`
+    ripple.style.top = `${y}px`
     ripple.style.width = '20px'
     ripple.style.height = '20px'
-    target.appendChild(ripple)
+    host.appendChild(ripple)
     setTimeout(() => ripple.remove(), 600)
   }
 
