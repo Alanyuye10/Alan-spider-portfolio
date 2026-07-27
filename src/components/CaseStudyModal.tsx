@@ -37,6 +37,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           transition={{ duration: 0.25 }}
           onMouseDown={onClose}
           onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
           style={{ position: 'fixed', inset: 0, zIndex: 50000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5vh 16px', background: 'rgba(2,4,12,.82)', backdropFilter: 'blur(12px)', overflow: 'auto' }}
         >
           <motion.article
