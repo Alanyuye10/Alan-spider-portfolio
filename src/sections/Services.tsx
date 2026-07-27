@@ -18,9 +18,9 @@ export function Services() {
           const Icon = icons[service.icon]
           return (
             <Reveal key={service.title} delay={index * 0.07}>
-              <motion.div className="service-row" whileHover="hover">
+              <motion.div className="service-row" whileHover="hover" whileTap={{ scale: 0.98, transition: { type: 'spring', stiffness: 400, damping: 12 } }}>
                 <span className="service-number">{service.number}</span>
-                <motion.span className="service-icon" whileHover={{ rotate: 8, scale: 1.05 }} transition={{ type: 'spring', stiffness: 200, damping: 15 }}><Icon /></motion.span>
+                <motion.span className="service-icon" whileHover={{ rotate: 8, scale: 1.05 }} whileTap={{ rotate: 8, scale: 1.05 }} transition={{ type: 'spring', stiffness: 200, damping: 15 }}><Icon /></motion.span>
                 <div><h3>{service.title}</h3><p>{service.text}</p></div>
                 <motion.span className="service-arrow" variants={{ hover: { rotate: 45, scale: 1.1 } }}><FiArrowUpRight /></motion.span>
               </motion.div>

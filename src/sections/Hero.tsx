@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react'
 import { FiArrowRight, FiDownload, FiMail } from 'react-icons/fi'
 import heroVisual from '../assets/Alan.png'
 import { MagneticLink } from '../components/MagneticLink'
@@ -65,6 +65,26 @@ export function Hero() {
     imageX.set(x * 16); imageY.set(y * 12)
     ringX.set(x * -28); ringY.set(y * -20)
   }
+
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
+  const handleOrientation = useCallback((event: DeviceOrientationEvent) => {
+    if (event.beta == null || event.gamma == null) return
+    const x = Math.max(-0.5, Math.min(0.5, (event.gamma / 45) * 0.5))
+    const y = Math.max(-0.5, Math.min(0.5, ((event.beta - 45) / 45) * 0.5))
+    imageX.set(x * 12); imageY.set(y * 10)
+    ringX.set(x * -20); ringY.set(y * -16)
+  }, [imageX, imageY, ringX, ringY])
+
+  useEffect(() => {
+    if (!isTouch) return
+    DeviceOrientationEvent.requestPermission?.().then((state) => {
+      if (state === 'granted') window.addEventListener('deviceorientation', handleOrientation)
+    }).catch(() => {
+      window.addEventListener('deviceorientation', handleOrientation)
+    })
+    return () => window.removeEventListener('deviceorientation', handleOrientation)
+  }, [handleOrientation, isTouch])
 
   return (
     <section id="hero" ref={sectionRef} className="hero section-shell" onMouseMove={handleMove}>

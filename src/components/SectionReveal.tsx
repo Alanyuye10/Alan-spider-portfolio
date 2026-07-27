@@ -16,14 +16,14 @@ export function SectionReveal({ children, className, delay = 0 }: SectionRevealP
 
   useEffect(() => {
     if (inView) {
-      controls.start({ opacity: 1, scale: 1 })
+      controls.start({ opacity: 1, scale: 1, y: 0 })
     }
   }, [inView, controls])
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.82 }}
+      initial={{ opacity: 0, scale: 0.84, y: 40 }}
       animate={controls}
       transition={{ duration: 0.9, delay, ease: easePremium }}
       className={cn('section-depth', className)}

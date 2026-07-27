@@ -7,8 +7,8 @@ import { experiences } from '../constants/data'
 
 export function Experience() {
   const cardVariants = (index: number) => ({
-    initial: { opacity: 0, scale: 0.84, filter: 'blur(4px)' },
-    whileInView: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+    initial: { opacity: 0, scale: 0.82, y: 30, filter: 'blur(6px)' },
+    whileInView: { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' },
   })
 
   return (

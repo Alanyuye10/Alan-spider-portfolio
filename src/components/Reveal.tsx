@@ -11,8 +11,8 @@ interface RevealProps extends HTMLMotionProps<'div'> {
 export function Reveal({ children, delay = 0, className, ...props }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.84, filter: 'blur(5px)' }}
-      whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, scale: 0.82, y: 30, filter: 'blur(6px)' }}
+      whileInView={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.72, delay, ease: easePremium }}
       className={cn(className)}
