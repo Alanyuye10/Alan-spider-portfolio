@@ -15,6 +15,9 @@ import { SpideySenseAlert } from '../components/SpideySenseAlert'
 import { WebShooter } from '../components/WebShooter'
 import { WebSwing } from '../components/WebSwing'
 import { WebTether } from '../components/WebTether'
+import { VenomOverlay } from '../components/VenomOverlay'
+import { VenomFace } from '../components/VenomFace'
+import { SpiderPortal } from '../components/SpiderPortal'
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext'
 import { useLenis } from '../hooks/useLenis'
 
@@ -62,6 +65,9 @@ function LayoutInner({ children }: { children: ReactNode }) {
       {!isTouch && decorReady && <SpideySense />}
       {!isTouch && decorReady && <WebSwing />}
       {!isTouch && decorReady && <WebShooter />}
+      {showEasterEggs && <VenomOverlay />}
+      {showEasterEggs && <VenomFace />}
+      {!isTouch && decorReady && showEasterEggs && <SpiderPortal />}
       <Navbar onCommand={() => setCommandOpen(true)} />
       {children}
       <Footer />
