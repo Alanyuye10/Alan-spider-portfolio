@@ -49,7 +49,8 @@ function LayoutInner({ children }: { children: ReactNode }) {
   return (
     <>
       <PageLoader visible={loading} />
-      {!isTouch && !loading && <GradientMesh />}
+      {!loading && <GradientMesh />}
+      <div className="bg-stars" aria-hidden="true">{Array.from({ length: 10 }, (_, i) => <i key={i} />)}</div>
       {!isTouch && <Cursor />}
       {!isTouch && <CursorTrail />}
       {!isTouch && <WebTether />}

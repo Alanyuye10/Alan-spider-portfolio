@@ -141,6 +141,38 @@ img { max-width: 100%; display: block; }
 @keyframes noise-fade { 0%, 100% { opacity: .035; } 50% { opacity: .05; } }
 body.noise-animated::before { animation: noise-fade 6s ease-in-out infinite; }
 
+/* Animated section gradient backgrounds — live wallpaper feel */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.skills, .experience, .services, .github-section {
+  background-size: 200% 200%;
+  animation: gradient-shift 22s ease infinite;
+}
+@keyframes glow-pulse-section {
+  0%, 100% { opacity: .25; transform: scale(1); }
+  50% { opacity: .55; transform: scale(1.06); }
+}
+.section-shell {
+  position: relative;
+}
+.section-shell::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 8% -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(225, 29, 46, .06), transparent 65%);
+  pointer-events: none;
+  animation: glow-pulse-section 7s ease-in-out infinite;
+}
+.section-shell:nth-child(even)::after {
+  background: radial-gradient(circle, rgba(46, 107, 198, .05), transparent 65%);
+  animation-delay: 2s;
+}
+
 /* 3D section depth */
 .section-depth { transform-style: preserve-3d; perspective: 1000px; }
 

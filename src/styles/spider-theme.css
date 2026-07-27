@@ -78,6 +78,40 @@ body {
   50% { opacity: .13; transform: scale(1.025) translateZ(0); }
 }
 
+/* Floating star dots — live wallpaper particle effect */
+@keyframes float-star {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10%  { opacity: .4; }
+  85%  { opacity: .4; }
+  100% { transform: translateY(-110vh) translateX(30px) scale(0.6); opacity: 0; }
+}
+.bg-stars { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+.bg-stars i {
+  position: absolute;
+  bottom: -10px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--silver-bright);
+  animation: float-star linear infinite;
+}
+.bg-stars i:nth-child(1)  { left: 5%;  width: 2px; height: 2px; animation-duration: 28s; animation-delay: 0s;   opacity: .2; }
+.bg-stars i:nth-child(2)  { left: 15%; width: 3px; height: 3px; animation-duration: 35s; animation-delay: 3s;   opacity: .3; }
+.bg-stars i:nth-child(3)  { left: 25%; width: 1px; height: 1px; animation-duration: 22s; animation-delay: 7s;   opacity: .15; }
+.bg-stars i:nth-child(4)  { left: 38%; width: 2px; height: 2px; animation-duration: 32s; animation-delay: 1s;   opacity: .25; }
+.bg-stars i:nth-child(5)  { left: 52%; width: 4px; height: 4px; animation-duration: 40s; animation-delay: 5s;   opacity: .35; }
+.bg-stars i:nth-child(6)  { left: 65%; width: 2px; height: 2px; animation-duration: 26s; animation-delay: 11s;  opacity: .2; }
+.bg-stars i:nth-child(7)  { left: 78%; width: 3px; height: 3px; animation-duration: 38s; animation-delay: 2s;   opacity: .3; }
+.bg-stars i:nth-child(8)  { left: 88%; width: 1px; height: 1px; animation-duration: 24s; animation-delay: 9s;   opacity: .15; }
+.bg-stars i:nth-child(9)  { left: 95%; width: 2px; height: 2px; animation-duration: 30s; animation-delay: 6s;   opacity: .25; }
+.bg-stars i:nth-child(10) { left: 45%; width: 3px; height: 3px; animation-duration: 36s; animation-delay: 4s;   opacity: .3; }
+
+@media (pointer: coarse) {
+  .bg-stars i { animation-duration: 45s; }
+  .bg-stars i:nth-child(3),
+  .bg-stars i:nth-child(7) { display: none; }
+}
+
 ::selection {
   color: #fff;
   background: rgba(225, 29, 46, .58);
