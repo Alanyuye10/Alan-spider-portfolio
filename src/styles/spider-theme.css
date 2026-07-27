@@ -106,12 +106,6 @@ body {
 .bg-stars i:nth-child(9)  { left: 95%; width: 2px; height: 2px; animation-duration: 30s; animation-delay: 6s;   opacity: .25; }
 .bg-stars i:nth-child(10) { left: 45%; width: 3px; height: 3px; animation-duration: 36s; animation-delay: 4s;   opacity: .3; }
 
-@media (pointer: coarse) {
-  .bg-stars i { animation-duration: 45s; }
-  .bg-stars i:nth-child(3),
-  .bg-stars i:nth-child(7) { display: none; }
-}
-
 ::selection {
   color: #fff;
   background: rgba(225, 29, 46, .58);

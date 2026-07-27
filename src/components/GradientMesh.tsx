@@ -9,24 +9,21 @@ export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#0205
   const blobsRef = useRef<HTMLDivElement[]>([])
   const frameRef = useRef<number>(0)
   const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
-  const speedMult = isTouch ? 0.35 : 1
-  const activeCount = isTouch ? Math.min(3, colors.length) : colors.length
 
   useEffect(() => {
     if (isReduced) return
-    const positions = blobsRef.current.slice(0, activeCount).map(() => ({
+    const positions = blobsRef.current.map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
-      vx: (Math.random() - 0.5) * speed * speedMult,
-      vy: (Math.random() - 0.5) * speed * speedMult,
+      vx: (Math.random() - 0.5) * speed,
+      vy: (Math.random() - 0.5) * speed,
     }))
 
     const animate = () => {
       if (document.hidden) { frameRef.current = requestAnimationFrame(animate); return }
 
       blobsRef.current.forEach((blob, i) => {
-        if (!blob || i >= activeCount) return
+        if (!blob) return
         const p = positions[i]
         if (!p) return
         p.x += p.vx * 0.12
@@ -42,13 +39,13 @@ export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#0205
 
     frameRef.current = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(frameRef.current)
-  }, [isReduced, speed, speedMult, activeCount])
+  }, [isReduced, speed])
 
   if (isReduced) return null
 
   return (
     <div className="gradient-mesh" aria-hidden="true">
-      {colors.slice(0, activeCount).map((color, index) => (
+      {colors.map((color, index) => (
         <div
           key={index}
           ref={(el) => { if (el) blobsRef.current[index] = el }}
@@ -57,7 +54,7 @@ export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#0205
             width: `${200 + index * 80}px`,
             height: `${200 + index * 80}px`,
             background: color,
-            opacity: isTouch ? 0.06 + index * 0.015 : 0.08 + index * 0.02,
+            opacity: 0.08 + index * 0.02,
           }}
         />
       ))}
