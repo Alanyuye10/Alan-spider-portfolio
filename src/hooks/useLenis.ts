@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 
+let lenisInstance: Lenis | null = null
+
+export function stopLenis() { lenisInstance?.stop() }
+export function startLenis() { lenisInstance?.start() }
+
 export function useLenis() {
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -15,6 +20,8 @@ export function useLenis() {
       gestureOrientation: 'vertical',
     })
 
+    lenisInstance = lenis
+
     let frame = 0
     const raf = (time: number) => {
       lenis.raf(time)
@@ -23,6 +30,7 @@ export function useLenis() {
     frame = requestAnimationFrame(raf)
 
     return () => {
+      lenisInstance = null
       cancelAnimationFrame(frame)
       lenis.destroy()
     }

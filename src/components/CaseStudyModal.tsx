@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { FiArrowUpRight, FiCheck, FiGithub, FiX } from 'react-icons/fi'
+import { stopLenis, startLenis } from '../hooks/useLenis'
 import type { Project } from '../types'
 
 interface CaseStudyModalProps {
@@ -12,17 +14,19 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
   useEffect(() => {
     if (!project) return
     document.body.style.overflow = 'hidden'
+    stopLenis()
     const keydown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', keydown)
     return () => {
       document.body.style.overflow = ''
+      startLenis()
       window.removeEventListener('keydown', keydown)
     }
   }, [project, onClose])
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -32,6 +36,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onMouseDown={onClose}
+          onWheel={(e) => e.stopPropagation()}
           style={{ position: 'fixed', inset: 0, zIndex: 50000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '5vh 16px', background: 'rgba(2,4,12,.82)', backdropFilter: 'blur(12px)', overflow: 'auto' }}
         >
           <motion.article
@@ -102,7 +107,8 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           </motion.article>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }
 
