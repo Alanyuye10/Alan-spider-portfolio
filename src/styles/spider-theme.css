@@ -1,4 +1,4 @@
-/* Premium Spider-Man art direction layered over the existing portfolio system. */
+﻿/* Premium Spider-Man art direction layered over the existing portfolio system. */
 :root {
   --bg: #02050b;
   --bg-soft: #050b16;
@@ -57,6 +57,8 @@ body {
   pointer-events: none;
   will-change: transform, opacity;
   transform: translateZ(0);
+  filter: blur(40px);
+  filter: blur(40px);
 }
 
 #root::before {
@@ -84,7 +86,7 @@ body {
   50% { opacity: .13; transform: scale(1.025) translateZ(0); }
 }
 
-/* Floating star dots — live wallpaper particle effect */
+/* Floating star dots â€” live wallpaper particle effect */
 @keyframes float-star {
   0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
   10%  { opacity: .4; }
@@ -171,6 +173,8 @@ body {
   pointer-events: none;
   will-change: transform;
   transform: translateZ(0);
+
+  filter: blur(40px);
 }
 
 .cursor-trail__dot {
@@ -432,7 +436,7 @@ body {
 .hero-web {
   opacity: .4;
   filter: drop-shadow(0 0 10px rgba(225, 29, 46, .12));
-  animation: hero-web-drift 14s ease-in-out infinite;
+  animation: hero-web-drift 18s ease-in-out infinite;
 }
 
 @keyframes hero-web-drift {
@@ -593,7 +597,7 @@ body {
   border-color: rgba(225, 29, 46, .38);
   background: rgba(3, 8, 18, .88);
   box-shadow: 0 0 28px rgba(225, 29, 46, .12);
-  animation: stamp-float 5s ease-in-out infinite;
+  animation: stamp-float 7s ease-in-out infinite;
 }
 
 @keyframes stamp-float {
@@ -681,7 +685,7 @@ body {
   color: #fff;
   border-color: rgba(225, 29, 46, .34);
   box-shadow: 0 0 22px rgba(225, 29, 46, .15);
-  animation: energy-pulse 1.2s ease-in-out infinite alternate;
+  animation: energy-pulse 1.8s ease-in-out infinite alternate;
 }
 
 @keyframes energy-pulse {
@@ -964,7 +968,7 @@ body {
   background: linear-gradient(90deg, transparent, var(--accent), var(--silver), var(--accent), transparent);
   background-size: 200% 100%;
   box-shadow: 0 0 16px rgba(225, 29, 46, .24);
-  animation: footer-strand 5s linear infinite;
+  animation: footer-strand 8s linear infinite;
 }
 
 @keyframes footer-strand {
@@ -1094,7 +1098,7 @@ body {
   }
 }
 
-/* ─── Enhanced Section Web Patterns ─── */
+/* â”€â”€â”€ Enhanced Section Web Patterns â”€â”€â”€ */
 .section-shell::before,
 .section-shell::after {
   content: "";
@@ -1135,7 +1139,7 @@ body {
   .section-shell::after { opacity: 0.06; }
 }
 
-/* ─── Venom Overlay ─── */
+/* â”€â”€â”€ Venom Overlay â”€â”€â”€ */
 .venom-overlay {
   position: fixed;
   inset: 0;
@@ -1183,7 +1187,7 @@ body {
   .venom-corner { display: none; }
 }
 
-/* ─── Venom Face Reveal ─── */
+/* â”€â”€â”€ Venom Face Reveal â”€â”€â”€ */
 .venom-face {
   position: fixed;
   inset: 0;
@@ -1209,7 +1213,7 @@ body {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
 }
 
-/* ─── Spider-Verse Portal ─── */
+/* â”€â”€â”€ Spider-Verse Portal â”€â”€â”€ */
 .spider-portal {
   position: fixed;
   inset: 0;

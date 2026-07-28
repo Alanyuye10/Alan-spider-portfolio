@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import Lenis from 'lenis'
 
 let lenisInstance: Lenis | null = null
@@ -13,17 +13,14 @@ export function useLenis() {
     if (reduceMotion) return
 
     const lenis = new Lenis({
-      duration: isTouch ? 0.8 : 1.1,
-      easing: (t: number) => {
-        const c4 = (2 * Math.PI) / 3
-        return t === 0 ? 0 : t === 1 ? 1 : -Math.pow(2, -10 * t) * Math.cos((t * 10 - 0.75) * c4) + 1
-      },
+      duration: isTouch ? 0.7 : 0.9,
+      easing: (t: number) => t === 0 ? 0 : t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
       smoothWheel: true,
-      wheelMultiplier: isTouch ? 0.5 : 0.9,
-      touchMultiplier: isTouch ? 0.7 : 1.0,
+      wheelMultiplier: isTouch ? 0.6 : 1.0,
+      touchMultiplier: isTouch ? 0.8 : 1.0,
       syncTouch: true,
-      syncTouchLerp: isTouch ? 0.08 : 0.1,
-      lerp: isTouch ? 0.08 : 0.06,
+      syncTouchLerp: isTouch ? 0.08 : 0.06,
+      lerp: isTouch ? 0.12 : 0.1,
       gestureOrientation: 'vertical',
     })
 
@@ -50,4 +47,3 @@ export function useLenis() {
     }
   }, [])
 }
-

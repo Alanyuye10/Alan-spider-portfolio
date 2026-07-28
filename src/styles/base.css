@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: dark;
   --bg: #050816;
   --bg-soft: #080c1b;
@@ -137,11 +137,11 @@ img { max-width: 100%; display: block; }
 .animated-border::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--border-angle), transparent 30%, var(--accent), var(--accent-secondary), transparent 70%); mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude; pointer-events: none; opacity: 0; transition: opacity .4s; animation: border-spin 3s linear infinite; }
 .animated-border:hover::before { opacity: 1; }
 
-/* Noise overlay — opacity-only animation (compositor-friendly) */
+/* Noise overlay â€” opacity-only animation (compositor-friendly) */
 @keyframes noise-fade { 0%, 100% { opacity: .035; } 50% { opacity: .05; } }
 body.noise-animated::before { animation: noise-fade 6s ease-in-out infinite; }
 
-/* Animated section gradient backgrounds — live wallpaper feel */
+/* Animated section gradient backgrounds â€” live wallpaper feel */
 @keyframes gradient-shift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
@@ -149,7 +149,7 @@ body.noise-animated::before { animation: noise-fade 6s ease-in-out infinite; }
 }
 .skills, .experience, .services, .github-section {
   background-size: 200% 200%;
-  animation: gradient-shift 22s ease infinite;
+  animation: gradient-shift 30s ease infinite;
 }
 @keyframes glow-pulse-section {
   0%, 100% { opacity: .25; transform: scale(1); }
@@ -166,7 +166,7 @@ body.noise-animated::before { animation: noise-fade 6s ease-in-out infinite; }
   border-radius: 50%;
   background: radial-gradient(circle, rgba(225, 29, 46, .06), transparent 65%);
   pointer-events: none;
-  animation: glow-pulse-section 7s ease-in-out infinite;
+  animation: glow-pulse-section 10s ease-in-out infinite;
 }
 .section-shell:nth-child(even)::after {
   background: radial-gradient(circle, rgba(46, 107, 198, .05), transparent 65%);

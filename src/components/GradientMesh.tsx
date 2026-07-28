@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef } from 'react'
 
 interface GradientMeshProps {
   colors?: string[]
@@ -19,8 +19,11 @@ export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#0205
       vy: (Math.random() - 0.5) * speed,
     }))
 
+    let skip = 0
     const animate = () => {
       if (document.hidden) { frameRef.current = requestAnimationFrame(animate); return }
+      skip = (skip + 1) % 2
+      if (skip !== 0) { frameRef.current = requestAnimationFrame(animate); return }
 
       blobsRef.current.forEach((blob, i) => {
         if (!blob) return
@@ -32,7 +35,7 @@ export function GradientMesh({ colors = ['#e11d2e', '#0a1f44', '#b8c3d3', '#0205
         if (p.x < -10) p.x = 110
         if (p.y > 110) p.y = -10
         if (p.y < -10) p.y = 110
-        blob.style.transform = `translate3d(${p.x}%, ${p.y}%, 0)`
+        blob.style.transform = 'translate3d(' + p.x + '%, ' + p.y + '%, 0)'
       })
       frameRef.current = requestAnimationFrame(animate)
     }

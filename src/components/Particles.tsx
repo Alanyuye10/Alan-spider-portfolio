@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+﻿import { useCallback, useEffect, useRef } from 'react'
 import { cn } from '../utils/cn'
 
 interface Particle {
@@ -23,7 +23,6 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
   const frameRef = useRef<number>(0)
-  const skipRef = useRef(0)
   const observerRef = useRef<IntersectionObserver | null>(null)
 
   const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -59,8 +58,8 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
     const resize = () => {
       canvas.width = canvas.offsetWidth * 2
       canvas.height = canvas.offsetHeight * 2
-      canvas.style.width = `${canvas.offsetWidth}px`
-      canvas.style.height = `${canvas.offsetHeight}px`
+      canvas.style.width = canvas.offsetWidth + 'px'
+      canvas.style.height = canvas.offsetHeight + 'px'
       ctx.scale(2, 2)
     }
 
@@ -68,8 +67,12 @@ export function Particles({ count = 50, color = 'rgba(96, 165, 250, 0.6)', speed
     window.addEventListener('resize', resize)
 
     let paused = false
+    let skip = 0
     const animate = () => {
       if (paused) { frameRef.current = requestAnimationFrame(animate); return }
+      skip = (skip + 1) % 2
+      if (skip !== 0) { frameRef.current = requestAnimationFrame(animate); return }
+
       const w = canvas.offsetWidth
       const h = canvas.offsetHeight
       ctx.clearRect(0, 0, w, h)

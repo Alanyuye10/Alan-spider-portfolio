@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+﻿import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 interface Ripple { id: number; x: number; y: number }
@@ -23,18 +23,20 @@ export function CursorTrail() {
     }
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+    // skip removed
 
     const animate = () => {
       const dots = dotRefs.current
       if (!dots[0] || !dots[1] || !dots[2]) { rafRef.current = requestAnimationFrame(animate); return }
 
+
       for (let i = 1; i < 3; i++) {
         const prev = posRef.current[i - 1]
         const curr = posRef.current[i]
-        curr.x = lerp(curr.x, prev.x, 0.18)
-        curr.y = lerp(curr.y, prev.y, 0.18)
+        curr.x = lerp(curr.x, prev.x, 0.35)
+        curr.y = lerp(curr.y, prev.y, 0.35)
         const dot = dots[i - 1]
-        if (dot) dot.style.transform = `translate(${curr.x - 4}px, ${curr.y - 4}px)`
+        if (dot) dot.style.transform = 'translate(' + (curr.x - 4) + 'px, ' + (curr.y - 4) + 'px)'
       }
       rafRef.current = requestAnimationFrame(animate)
     }
@@ -55,7 +57,7 @@ export function CursorTrail() {
   return (
     <div ref={trailRef} className="cursor-trail" aria-hidden="true">
       {[0, 1, 2].map((i) => (
-        <span key={i} ref={(el) => { dotRefs.current[i] = el }} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13, background: `rgba(225,29,46,${0.5 - i * 0.14})`, willChange: 'transform' }} />
+        <span key={i} ref={(el) => { dotRefs.current[i] = el }} className="cursor-trail__dot" style={{ width: 8 - i * 2.5, height: 8 - i * 2.5, opacity: 0.4 - i * 0.13,         background: 'rgba(225,29,46,' + (0.5 - i * 0.14) + ')', willChange: 'transform' }} />
       ))}
       <AnimatePresence>
         {ripples.map((ripple) => (

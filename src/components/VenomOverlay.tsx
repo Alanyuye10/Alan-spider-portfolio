@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef } from 'react'
 
 interface Blob {
   x: number
@@ -29,7 +29,7 @@ export function VenomOverlay() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const count = isTouch ? 5 : 10
+    const count = isTouch ? 5 : 8
     const blobs: Blob[] = []
     for (let i = 0; i < count; i++) {
       blobs.push({
@@ -63,15 +63,27 @@ export function VenomOverlay() {
         if (!canvas) return
         canvas.width = window.innerWidth * 2
         canvas.height = window.innerHeight * 2
-        canvas.style.width = `${window.innerWidth}px`
-        canvas.style.height = `${window.innerHeight}px`
+        canvas.style.width = window.innerWidth + 'px'
+        canvas.style.height = window.innerHeight + 'px'
         ctx.scale(2, 2)
       }, 100)
     }
     resize()
 
+    let paused = false
+    let skip = 0
+
+    const observer = new IntersectionObserver(([entry]) => {
+      paused = !entry.isIntersecting
+    }, { threshold: 0 })
+    observer.observe(canvas)
+
     const animate = () => {
       if (!canvas || !ctx) { frameRef.current = requestAnimationFrame(animate); return }
+      if (paused) { frameRef.current = requestAnimationFrame(animate); return }
+      skip = (skip + 1) % 2
+      if (skip !== 0) { frameRef.current = requestAnimationFrame(animate); return }
+
       timeRef.current += 0.01
       const w = window.innerWidth
       const h = window.innerHeight
@@ -109,9 +121,9 @@ export function VenomOverlay() {
           cx + stretchX, cy + stretchY, 0,
           cx + stretchX, cy + stretchY, rad
         )
-        grad.addColorStop(0, `rgba(10, 0, 20, ${0.35 + pulse * 0.08})`)
-        grad.addColorStop(0.4, `rgba(26, 0, 48, ${0.2 + pulse * 0.05})`)
-        grad.addColorStop(0.7, `rgba(0, 0, 0, ${0.12 + pulse * 0.03})`)
+        grad.addColorStop(0, 'rgba(10, 0, 20, ' + (0.35 + pulse * 0.08) + ')')
+        grad.addColorStop(0.4, 'rgba(26, 0, 48, ' + (0.2 + pulse * 0.05) + ')')
+        grad.addColorStop(0.7, 'rgba(0, 0, 0, ' + (0.12 + pulse * 0.03) + ')')
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)')
 
         ctx.beginPath()
@@ -130,6 +142,7 @@ export function VenomOverlay() {
       window.removeEventListener('pointermove', handleMove)
       document.documentElement.removeEventListener('mouseleave', handleLeave)
       clearTimeout(resizeTimeout)
+      observer.disconnect()
     }
   }, [isReduced, isTouch])
 

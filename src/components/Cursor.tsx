@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 export function Cursor() {
   const cursorX = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
   const cursorY = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
-  const glowX = useSpring(useMotionValue(-300), { stiffness: 280, damping: 35 })
-  const glowY = useSpring(useMotionValue(-300), { stiffness: 280, damping: 35 })
+  const glowX = useSpring(useMotionValue(-300), { stiffness: 120, damping: 22 })
+  const glowY = useSpring(useMotionValue(-300), { stiffness: 120, damping: 22 })
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
   const visibleRef = useRef(false)
