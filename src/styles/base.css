@@ -39,7 +39,7 @@
 }
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { background: var(--bg); scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+html { background: var(--bg); scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); overflow-x: hidden; -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
 html::-webkit-scrollbar { width: 6px; }
 html::-webkit-scrollbar-track { background: var(--bg); }
 html::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-secondary)); border-radius: 3px; }
@@ -114,6 +114,28 @@ img { max-width: 100%; display: block; }
 .button--ghost { border-color: var(--line); background: rgba(255,255,255,.025); color: rgba(255,255,255,.85); }
 .button--ghost:hover { border-color: rgba(99,102,241,.4); background: rgba(79,70,229,.08); }
 .tilt-card { position: relative; transform-style: preserve-3d; will-change: transform; }
+
+/* Shared premium motion: keep interactive surfaces smooth and compositor-friendly. */
+.button, .nav-cta, .command-trigger, .hero-mail, .footer-socials a,
+.skill-group, .skill-item, .project-card, .project-art__actions a,
+.project-case-study-cta, .stat-card, .about-code-card, .hero-float-card { will-change: transform; }
+.button, .nav-cta, .hero-mail, .footer-socials a, .project-case-study-cta { transition-timing-function: cubic-bezier(.22, 1, .36, 1); }
+.button { position: relative; isolation: isolate; }
+.button::before, .project-card::before, .skill-group::before, .stat-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: radial-gradient(420px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(255,255,255,.11), transparent 42%);
+  transition: opacity .45s ease;
+}
+.button:hover::before, .project-card:hover::before, .skill-group:hover::before, .stat-card:hover::after { opacity: 1; }
+.project-card, .skill-group, .stat-card { transform: translateZ(0); transition: transform .55s cubic-bezier(.22,1,.36,1), border-color .35s, box-shadow .45s, background .35s; }
+.project-card:hover, .skill-group:hover, .stat-card:hover { transform: translateY(-7px) rotateX(1deg); }
+.skill-item:hover { transform: translateX(5px); }
+.hero-mail:hover, .footer-socials a:hover { transform: translateY(-4px) scale(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 
 .palette-backdrop { position: fixed; z-index: 5000; inset: 0; padding: 10vh 20px; display: flex; align-items: flex-start; justify-content: center; background: rgba(2, 4, 12, .72); backdrop-filter: blur(10px); }
 .command-palette { width: min(600px, 100%); overflow: hidden; border: 1px solid rgba(148,163,184,.2); border-radius: 18px; background: rgba(10,15,31,.96); box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.03) inset; }

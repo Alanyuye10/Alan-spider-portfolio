@@ -49,6 +49,31 @@ function LayoutInner({ children }: { children: ReactNode }) {
     return () => document.body.classList.remove('noise-animated')
   }, [loading])
 
+  useEffect(() => {
+    if (isTouch || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let frame = 0
+    let x = 0
+    let y = 0
+    const move = (event: PointerEvent) => {
+      x = event.clientX
+      y = event.clientY
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        document.querySelectorAll<HTMLElement>('.project-card, .skill-group, .stat-card, .button').forEach((element) => {
+          const rect = element.getBoundingClientRect()
+          element.style.setProperty('--pointer-x', `${x - rect.left}px`)
+          element.style.setProperty('--pointer-y', `${y - rect.top}px`)
+        })
+        frame = 0
+      })
+    }
+    window.addEventListener('pointermove', move, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', move)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [isTouch])
+
   return (
     <>
       <PageLoader visible={loading} />
