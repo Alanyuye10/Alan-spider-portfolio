@@ -91,6 +91,13 @@ export function Hero() {
 
   return (
     <section id="hero" ref={sectionRef} className="hero section-shell" onMouseMove={handleMove}>
+      <div className="suit-emblem" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none">
+          <path d="M60 28c-9 0-14 10-14 25v25c0 13 6 20 14 20s14-7 14-20V53c0-15-5-25-14-25Z" fill="currentColor" />
+          <path d="M49 43 25 27M47 55 17 48M47 68 15 72M49 80 25 98M71 43 95 27M73 55l30-7M73 68l32 4M71 80l24 18" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
+          <path d="M57 34h6M57 43h6M57 52h6M57 61h6M57 70h6M57 79h6" stroke="#fff" strokeOpacity=".7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </div>
       <Particles count={35} color="rgba(225, 29, 46, 0.6)" speed={0.12} />
       <div className="hero-grid" aria-hidden="true" />
       <ParallaxLayer speed={-0.2}><div className="hero-ambient hero-ambient--one" aria-hidden="true" /></ParallaxLayer>

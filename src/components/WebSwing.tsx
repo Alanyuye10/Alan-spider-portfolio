@@ -82,6 +82,20 @@ export function WebSwing() {
         />
       </motion.svg>
       <motion.div
+        className="swinging-spider"
+        aria-hidden="true"
+        initial={{ x: 120, y: -24, rotate: 18, opacity: 0 }}
+        animate={show ? { x: 0, y: 18, rotate: -12, opacity: [0, 1, 1, 0] } : { x: 120, y: -24, opacity: 0 }}
+        transition={{ duration: .9, ease: 'easeOut' }}
+      >
+        <svg width="42" height="52" viewBox="0 0 42 52" fill="none">
+          <path d="M21 0v16" stroke="#b8c3d3" strokeWidth="1" opacity=".65" />
+          <circle cx="21" cy="23" r="6" fill="#e11d2e" />
+          <path d="M21 29v15M17 31 7 38M25 31l10 7M18 44l-7 8M24 44l7 8" stroke="#e11d2e" strokeWidth="3" strokeLinecap="round" />
+          <path d="M18 20h6" stroke="#fff" strokeWidth="1" opacity=".8" />
+        </svg>
+      </motion.div>
+      <motion.div
         className="web-swing-dust"
         aria-hidden="true"
         style={{
