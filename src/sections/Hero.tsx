@@ -77,7 +77,10 @@ export function Hero() {
   }, [imageX, imageY, ringX, ringY])
 
   useEffect(() => {
-    if (!isTouch) return
+    // Device-orientation updates can cause continuous full-section repaints on
+    // mobile browsers. Keep the mobile hero static and let touch feedback do
+    // the work instead.
+    if (isTouch || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     DeviceOrientationEvent.requestPermission?.().then((state) => {
       if (state === 'granted') window.addEventListener('deviceorientation', handleOrientation)
     }).catch(() => {

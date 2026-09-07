@@ -1299,6 +1299,25 @@ body {
   .site-footer::before {
     animation: none !important;
   }
+  /* Final mobile paint safeguard. Desktop motion is intentionally not carried
+     into touch layouts because fixed filters, masks, and transforms can
+     flicker during scroll on iOS/Android WebViews. */
+  #root *, #root *::before, #root *::after {
+    animation: none !important;
+  }
+  .gradient-mesh__blob,
+  .hero-ambient,
+  .spider-portal,
+  .venom-corner,
+  .cursor-ripple,
+  .cursor-trail,
+  .spidey-aura,
+  .web-swing,
+  .web-swing-dust {
+    display: none !important;
+  }
+  .hero-ambient { transform: none !important; }
+  .parallax-layer { transform: none !important; }
   body::after { display: none; }
   .hero-image-wrap img { transform: scale(1.06) !important; }
   .hero-orbit { transform: rotate(-12deg) !important; }
