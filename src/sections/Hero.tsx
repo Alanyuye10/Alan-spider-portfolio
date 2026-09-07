@@ -136,13 +136,16 @@ export function Hero() {
         <motion.div className="availability-pill" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.05 }}>
           <span><i /></span> Available for select projects
         </motion.div>
-        <h1 aria-label="Hi, I'm Alan. Full Stack MERN Developer.">
-          <span className="hero-overline">HI, I'M ALAN</span>
+        <h1 aria-label="With great code comes great responsibility. I'm Alan, a Full Stack MERN Developer.">
+          <span className="hero-overline">ALAN / FULL STACK MERN DEVELOPER</span>
           <span className="hero-title-line" style={{ overflow: 'hidden' }}>
-            <TextReveal as="span" type="word" delay={0.85} stagger={0.035}>Full Stack</TextReveal>
+            <TextReveal as="span" type="word" delay={0.85} stagger={0.035}>WITH GREAT CODE</TextReveal>
           </span>
           <span className="hero-title-mask">
-            <TextReveal as="span" className="hero-title-line hero-title-line--gradient" type="word" delay={0.95} stagger={0.035}>MERN Developer.</TextReveal>
+            <TextReveal as="span" className="hero-title-line hero-title-line--gradient" type="word" delay={0.95} stagger={0.035}>COMES GREAT</TextReveal>
+          </span>
+          <span className="hero-title-mask hero-title-line--responsibility">
+            <TextReveal as="span" className="hero-title-line hero-title-line--gradient" type="word" delay={1.05} stagger={0.035}>RESPONSIBILITY.</TextReveal>
           </span>
         </h1>
         <motion.div className="hero-role" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}><span>01</span>I’m a <strong>{role}</strong><i /></motion.div>

@@ -1398,6 +1398,13 @@ body {
   .mobile-menu__links a:active { padding-left: 10px; color: #fff; }
 }
 
+.hero-title-line--responsibility { padding-top: 3px; }
+.hero-title-line--responsibility .hero-title-line { font-size: clamp(3rem, 4.1vw, 4.8rem); letter-spacing: -.075em; }
+.nav-links a, .mobile-menu__links a { text-transform: uppercase; letter-spacing: .06em; }
+@media (max-width: 700px) {
+  .hero-title-line--responsibility .hero-title-line { font-size: clamp(2.1rem, 8.4vw, 3.45rem); }
+}
+
 @media (max-width: 420px) {
   .hero-title-line { font-size: clamp(2.9rem, 14vw, 4rem); }
   .hero-title-line--gradient { font-size: clamp(2.15rem, 10.5vw, 3.25rem); }
