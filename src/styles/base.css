@@ -69,8 +69,8 @@ img { max-width: 100%; display: block; }
 .section-heading--center .section-kicker { justify-content: center; }
 
 .scroll-progress { position: fixed; z-index: 10000; inset: 0 0 auto; height: 2px; transform-origin: left; background: linear-gradient(90deg, var(--accent), var(--accent-secondary)); box-shadow: 0 0 18px rgba(190,18,60,.5); }
-.cursor-dot { position: fixed; z-index: 60000; top: 0; left: 0; width: 12px; height: 12px; border: 1px solid rgba(255, 255, 255, .8); border-radius: 50%; pointer-events: none; mix-blend-mode: difference; }
-.cursor-glow { position: fixed; z-index: 59999; top: 0; left: 0; width: 560px; height: 560px; border-radius: 50%; pointer-events: none; background: rgba(190,18,60,.04); filter: blur(80px); }
+.cursor-dot { position: fixed; z-index: 60000; top: 0; left: 0; width: 12px; height: 12px; border: 1px solid rgba(255, 255, 255, .8); border-radius: 50%; pointer-events: none; mix-blend-mode: difference; will-change: transform, opacity; }
+.cursor-glow { position: fixed; z-index: 59999; top: 0; left: 0; width: 560px; height: 560px; border-radius: 50%; pointer-events: none; background: rgba(190,18,60,.04); filter: blur(80px); will-change: transform, opacity; }
 @media (pointer: fine) { body, a, button { cursor: none; } }
 
 .page-loader { position: fixed; inset: 0; z-index: 100000; display: grid; place-items: center; align-content: center; gap: 24px; background: #03050d; }

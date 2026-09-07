@@ -2,10 +2,12 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 export function Cursor() {
-  const cursorX = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
-  const cursorY = useSpring(useMotionValue(-100), { stiffness: 1200, damping: 60 })
-  const glowX = useSpring(useMotionValue(-300), { stiffness: 120, damping: 22 })
-  const glowY = useSpring(useMotionValue(-300), { stiffness: 120, damping: 22 })
+  // A slightly softer spring prevents the cursor from overshooting on high-Hz
+  // trackpads while keeping it responsive to quick mouse movement.
+  const cursorX = useSpring(useMotionValue(-100), { stiffness: 760, damping: 48, mass: 0.28 })
+  const cursorY = useSpring(useMotionValue(-100), { stiffness: 760, damping: 48, mass: 0.28 })
+  const glowX = useSpring(useMotionValue(-300), { stiffness: 90, damping: 30, mass: 0.5 })
+  const glowY = useSpring(useMotionValue(-300), { stiffness: 90, damping: 30, mass: 0.5 })
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState(false)
   const visibleRef = useRef(false)
@@ -42,7 +44,7 @@ export function Cursor() {
       }
     }
     const hide = () => { visibleRef.current = false; setVisible(false) }
-    window.addEventListener('pointermove', move)
+    window.addEventListener('pointermove', move, { passive: true })
     document.documentElement.addEventListener('mouseleave', hide)
     return () => { window.removeEventListener('pointermove', move); document.documentElement.removeEventListener('mouseleave', hide) }
   }, [cursorX, cursorY, glowX, glowY])
