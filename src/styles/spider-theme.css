@@ -1344,7 +1344,7 @@ body {
     min-height: auto;
     padding-top: 122px;
     padding-bottom: 88px;
-    overflow: hidden;
+    overflow: visible;
   }
   .hero-copy { position: relative; z-index: 4; }
   .hero-title-line { text-shadow: 0 0 26px rgba(225,29,46,.14); }
@@ -1354,7 +1354,7 @@ body {
   .hero-visual {
     z-index: 2;
     height: 440px;
-    margin-top: 12px;
+    margin: 12px -7vw 0;
     filter: drop-shadow(0 24px 35px rgba(0,0,0,.28));
   }
   .hero-image-wrap {
@@ -1399,7 +1399,7 @@ body {
 @media (max-width: 420px) {
   .hero-title-line { font-size: clamp(2.9rem, 14vw, 4rem); }
   .hero-title-line--gradient { font-size: clamp(2.15rem, 10.5vw, 3.25rem); }
-  .hero-visual { height: 390px; margin-inline: -18vw; }
+  .hero-visual { height: 390px; margin-inline: -7vw; }
   .hero-float-card { transform: scale(.78); }
   .hero-float-card--top { right: 9%; }
   .hero-float-card--bottom { left: 9%; }
