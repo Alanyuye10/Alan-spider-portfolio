@@ -1275,6 +1275,52 @@ body {
 
 /* Mobile-specific composition and touch feedback -------------------------- */
 @media (max-width: 700px) {
+  /* Touch browsers can repaint transformed layers aggressively. Keep the
+     mobile composition stable and reserve motion for intentional presses. */
+  body::after,
+  .hero-grid,
+  .hero-web,
+  .hero-web svg path,
+  .spider-web-overlay,
+  .spider-web-overlay svg path,
+  .hero-image-wrap img,
+  .hero-orbit,
+  .availability-pill,
+  .project-visual::before,
+  .project-window,
+  .visual-chart i,
+  .skill-meta b::after,
+  .timeline-dot,
+  .contact-glow,
+  .button--primary,
+  .nav-cta,
+  .about-stamp,
+  .footer-status i,
+  .site-footer::before {
+    animation: none !important;
+  }
+  body::after { display: none; }
+  .hero-image-wrap img { transform: scale(1.06) !important; }
+  .hero-orbit { transform: rotate(-12deg) !important; }
+  .project-window { translate: none !important; }
+  .project-card:hover,
+  .skill-group:hover,
+  .stat-card:hover,
+  .timeline-card:hover,
+  .github-stat:hover,
+  .contact-details:hover,
+  .contact-form-wrap:hover {
+    transform: none;
+  }
+  .project-card:hover .project-window { transform: perspective(900px) rotateX(3deg) rotateY(-7deg) rotateZ(1deg); }
+  .project-card:hover .project-info h3 { transform: none; }
+  .project-card::before,
+  .skill-group::before,
+  .timeline-card::before,
+  .github-stat::before,
+  .contact-form-wrap::before,
+  .project-art::after { display: none; }
+
   .hero.section-shell {
     min-height: auto;
     padding-top: 122px;
@@ -1342,9 +1388,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  @media (max-width: 700px) {
-    .hero-image-wrap img, .hero-orbit { animation: none !important; }
-  }
+  .hero-image-wrap img, .hero-orbit { animation: none !important; }
 }
 
 /* Full-bleed hero canvas: the content remains aligned to the grid, while
